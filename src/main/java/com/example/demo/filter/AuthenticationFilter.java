@@ -4,7 +4,6 @@ import com.example.demo.annotation.Authenticated;
 import com.example.demo.service.AuthenticationService;
 import java.util.Objects;
 import java.util.Optional;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.server.ServerWebExchange;
@@ -12,7 +11,6 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
-@Component
 public class AuthenticationFilter implements WebFilter {
 
     private final AuthenticationService validator;
@@ -34,6 +32,7 @@ public class AuthenticationFilter implements WebFilter {
     }
 
     void validate(ServerWebExchange exchange, String op){
+      // HELP : The below attribute is only set for onSuccess/onError and its too late to process annotation
       System.out.println("op "+ op+" Handler "+ exchange.getAttribute(HandlerMapping.BEST_MATCHING_HANDLER_ATTRIBUTE));
 
        Optional
